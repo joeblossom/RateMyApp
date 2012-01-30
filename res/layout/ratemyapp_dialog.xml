@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content">
+    
+    
+    <RelativeLayout android:id="@+id/ratemyapp_dialog_header_layout" 
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent" 
+                android:layout_alignParentTop="true"
+                android:paddingBottom="6dip">
+                
+        <TextView android:id="@+id/ratemyapp_dialog_title_textview"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_marginLeft="10dip"
+                android:layout_marginBottom="7dip"
+                android:textStyle="bold" 
+                android:textSize="20dip"/>
+     </RelativeLayout>
+     
+	<LinearLayout android:layout_height="wrap_content"
+		android:layout_width="fill_parent" 
+		android:layout_below="@+id/ratemyapp_dialog_header_layout"
+		android:id="@+id/ratemyapp_dialog_body"
+		android:orientation="vertical" 
+		android:paddingLeft="5dip"
+		android:paddingRight="5dip">
+		
+		<TextView android:layout_width="wrap_content"
+			android:layout_height="wrap_content" 
+			android:padding="5dip"
+			android:textSize="13sp"
+			android:id="@+id/ratemyapp_dialog_info" />
+	</LinearLayout>
+	
+	<RelativeLayout android:id="@+id/ratemyapp_dialog_accept_button_layout" 
+				android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:layout_below="@+id/ratemyapp_dialog_body" 
+                android:paddingLeft="10dip"
+                android:paddingRight="10dip"
+                android:paddingTop="6dip"
+                >
+	    <Button android:id="@+id/ratemyapp_dialog_accept_button"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ratemyapp_accept_button_label"
+                    android:textStyle="bold" 
+                    android:textSize="18sp"
+                    />
+	</RelativeLayout>
+ 
+    <RelativeLayout android:id="@+id/ratemyapp_dialog_later_button_layout" 
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:layout_below="@+id/ratemyapp_dialog_accept_button_layout" 
+                android:paddingLeft="10dip"
+                android:paddingRight="10dip"
+                android:paddingTop="6dip"
+                >
+     	   <Button android:id="@+id/ratemyapp_dialog_later_button"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ratemyapp_later_button_label"
+                    android:textSize="18sp"
+                     />
+    </RelativeLayout> 	   
+    <RelativeLayout android:id="@+id/ratemyapp_dialog_cancel_button_layout" 
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:layout_below="@+id/ratemyapp_dialog_later_button_layout" 
+                android:paddingLeft="10dip"
+                android:paddingRight="10dip"
+                android:paddingTop="6dip"
+                >
+     	   <Button android:id="@+id/ratemyapp_dialog_cancel_button"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ratemyapp_cancel_button_label"
+                    android:textSize="18sp"
+                    />
+    </RelativeLayout>
+
+</RelativeLayout>

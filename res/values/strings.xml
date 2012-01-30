@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">RateMyApp Demo</string>
+    <string name="ratemyappdemo_info_label">To view the RateMyApp dialog, either click the button below or restart this app 3 times.</string>
+    <string name="ratemyappdemo_button_label">RateMyApp</string>
+    <string name="ratemyapp_accept_button_label">Rate Now</string>
+    <string name="ratemyapp_later_button_label">Remind me later</string>
+    <string name="ratemyapp_cancel_button_label">No, thank you</string>
+</resources>
