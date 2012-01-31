@@ -13,14 +13,17 @@ Add the following files to your project:
 <string name="ratemyapp_cancel_button_label">No, thank you</string>
 </pre>
 
+You can change the number of launches or days until prompt in the RateMyApp.java, by updating the variables LAUNCHES_UNTIL_PROMPT or DAYS_UNTIL_PROMPT, respectively. The DAYS_AND_LAUNCHES variable in
+RateMyApp.java specifies if you want both launches and days requirement to be met before the dialog is shown, or just one.
+
 ##Usage
 <pre>
 		RateMyApp rmaTemp = new RateMyApp(this);
         rmaTemp.app_launched();
 </pre>
 
-When app_launched is called, it will increment the launch counter, check to see if the 
-correct conditions are met to show the dialog, and show the dialog if necessary.
+When app_launched is called, it will increment the launch counter, check and show the dialog if the
+correct conditions are met.
 
 You can also do something like the following to open up the dialog whenever you want (no conditions need to be met):
 <pre>
