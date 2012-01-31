@@ -8,10 +8,11 @@ Add the following files to your project:
 * RateMyApp.java (from /src/com/RateMyAppDemo/utilities)
 * ratemyapp_dialog.xml (from /res/layout)
 * And the following strings to your strings.xml:
-
-    \<string name="ratemyapp_accept_button_label"\>Rate Now\</string\>
-    \<string name="ratemyapp_later_button_label"\>Remind me later\</string\>
-    \<string name="ratemyapp_cancel_button_label"\>No, thank you\</string\>
+<pre>
+\<string name="ratemyapp_accept_button_label"\>Rate Now\</string\>
+\<string name="ratemyapp_later_button_label"\>Remind me later\</string\>
+\<string name="ratemyapp_cancel_button_label"\>No, thank you\</string\>
+</pre>
 
 You can change the number of launches or days until prompt in the RateMyApp.java, by updating the 
 variables LAUNCHES_UNTIL_PROMPT or DAYS_UNTIL_PROMPT, respectively. The DAYS_AND_LAUNCHES variable 
