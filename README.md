@@ -2,6 +2,8 @@
 RateMyApp allows you to ask your users to rate your app after a specified number of days or launches. (or both) 
 You can also quickly style the dialog box to match your app.
 
+*Please Note: This only works with apps downloaded from the Android Market.*
+
 ##Install
 Add the following files to your project:
 
