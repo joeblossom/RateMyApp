@@ -18,7 +18,7 @@ public class RateMyAppDemoActivity extends Activity implements OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         
-        rmaTemp = new RateMyApp(this,this);
+        rmaTemp = new RateMyApp(this);
         rmaTemp.app_launched();
         
         ratemyappButton = (Button) findViewById(R.id.ratemyapp_button);

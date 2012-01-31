@@ -3,7 +3,6 @@ package com.RateMyAppDemo.utilities;
 import com.RateMyAppDemo.R;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -22,19 +21,20 @@ public class RateMyApp {
     private final static int DAYS_UNTIL_PROMPT = 3;
     private final static int LAUNCHES_UNTIL_PROMPT = 3;
     
-    private Activity callerActivity;
+    // If true, both the specified number of days and number of launches must occur before
+    // the dialog will be presented to the user. Otherwise, it's just one or the other.
+    private final static boolean DAYS_AND_LAUNCHES = false;
     
-    private Context mContext;
+    private Activity callerActivity;
     
     private AlertDialog ratemyappDialog;
     
-    public RateMyApp(Context context, Activity caller) {
+    public RateMyApp(Activity caller) {
 		callerActivity = caller;
-		mContext = context;
 	}
     
     public void app_launched() {
-        SharedPreferences prefs = mContext.getSharedPreferences("apprater", 0);
+        SharedPreferences prefs = callerActivity.getSharedPreferences("apprater", 0);
         if (prefs.getBoolean("dontshowagain", false)) { return; }
         
         SharedPreferences.Editor editor = prefs.edit();
@@ -50,13 +50,17 @@ public class RateMyApp {
             editor.putLong("date_firstlaunch", date_firstLaunch);
         }
         
-        // Wait at least n days before opening
-        if (launch_count >= LAUNCHES_UNTIL_PROMPT) {
+        boolean exceedsSpecifiedLaunches = launch_count >= LAUNCHES_UNTIL_PROMPT;
+        boolean exceedsDaysSinceFirstLaunch = System.currentTimeMillis() >= date_firstLaunch + 
+                (DAYS_UNTIL_PROMPT * 24 * 60 * 60 * 1000);
+        
+        // Wait until specified number of launches or until specified number of days have passed
+        if ((exceedsSpecifiedLaunches || exceedsDaysSinceFirstLaunch) && !DAYS_AND_LAUNCHES) {
         	showRateDialog(editor);
         }
-        else if(System.currentTimeMillis() >= date_firstLaunch + 
-                (DAYS_UNTIL_PROMPT * 24 * 60 * 60 * 1000)) {
-            showRateDialog(editor);
+        else if (exceedsSpecifiedLaunches && exceedsDaysSinceFirstLaunch && DAYS_AND_LAUNCHES)
+        {
+        	showRateDialog(editor);
         }
         
         editor.commit();
@@ -66,9 +70,11 @@ public class RateMyApp {
     	
     	AlertDialog.Builder builder;
     	
+    	// Inflate the layout
     	LayoutInflater inflater = callerActivity.getLayoutInflater();
-		View layout = inflater.inflate(R.layout.ratemyapp_dialog, null);
-		
+    	View layout = inflater.inflate(R.layout.ratemyapp_dialog, null);
+    	
+    	// Grab elements of the layout
 		Button rateButton = (Button) layout.findViewById(R.id.ratemyapp_dialog_accept_button);
 		Button laterButton = (Button) layout.findViewById(R.id.ratemyapp_dialog_later_button);
 		Button cancelButton = (Button) layout.findViewById(R.id.ratemyapp_dialog_cancel_button);
@@ -85,7 +91,7 @@ public class RateMyApp {
 		
 		rateButton.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
-                mContext.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + APP_PACKAGENAME)));
+            	callerActivity.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + APP_PACKAGENAME)));
                 ratemyappDialog.dismiss();
             }
         });
@@ -110,7 +116,7 @@ public class RateMyApp {
             }
         });
         
-        builder = new AlertDialog.Builder(mContext);
+        builder = new AlertDialog.Builder(callerActivity);
 		builder.setView(layout);
 
 		ratemyappDialog = builder.create();
