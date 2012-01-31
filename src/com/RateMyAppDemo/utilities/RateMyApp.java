@@ -63,8 +63,7 @@ public class RateMyApp {
         if ((exceedsSpecifiedLaunches || exceedsDaysSinceFirstLaunch) && !DAYS_AND_LAUNCHES) {
         	showRateDialog(editor);
         }
-        else if (exceedsSpecifiedLaunches && exceedsDaysSinceFirstLaunch && DAYS_AND_LAUNCHES)
-        {
+        else if (exceedsSpecifiedLaunches && exceedsDaysSinceFirstLaunch && DAYS_AND_LAUNCHES) {
         	showRateDialog(editor);
         }
         
@@ -72,6 +71,7 @@ public class RateMyApp {
     }   
     
     public void showRateDialog(final SharedPreferences.Editor editor) {
+    	if(APP_PACKAGENAME.equals("")) return;
     	
     	AlertDialog.Builder builder;
     	
