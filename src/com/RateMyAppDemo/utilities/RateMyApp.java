@@ -5,6 +5,8 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.text.Html;
 import android.text.Spanned;
@@ -15,8 +17,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class RateMyApp {
-    private final static String APP_TITLE = "RateMyApp";
-    private final static String APP_PACKAGENAME = "com.RateMyAppDemo";
+    private static String APP_TITLE;
+    private static String APP_PACKAGENAME;
     
     private final static int DAYS_UNTIL_PROMPT = 3;
     private final static int LAUNCHES_UNTIL_PROMPT = 3;
@@ -31,6 +33,9 @@ public class RateMyApp {
     
     public RateMyApp(Activity caller) {
 		callerActivity = caller;
+		
+		APP_TITLE = getApplicationName();
+		APP_PACKAGENAME = getPackageName();
 	}
     
     public void app_launched() {
@@ -121,5 +126,30 @@ public class RateMyApp {
 
 		ratemyappDialog = builder.create();
 		ratemyappDialog.show();     
+    }
+    
+    private String getPackageName(){
+        String pkgName = "";
+        try {
+            PackageManager manager = callerActivity.getPackageManager();
+            PackageInfo info = manager.getPackageInfo(callerActivity.getPackageName(), 0);
+            pkgName = info.packageName;
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        return pkgName;
+    }
+    
+    private String getApplicationName(){
+		String appName = "";
+		try {
+			PackageManager manager = callerActivity.getPackageManager();
+			PackageInfo info = manager.getPackageInfo(callerActivity.getPackageName(), 0);
+			appName = callerActivity.getResources().getString(info.applicationInfo.labelRes);
+		}
+		catch (Exception e) {
+            e.printStackTrace();
+		}
+        return appName;
     }
 }
