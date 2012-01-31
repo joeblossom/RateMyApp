@@ -9,9 +9,9 @@ Add the following files to your project:
 * ratemyapp_dialog.xml (from /res/layout)
 * And the following strings to your strings.xml:
 
-<string name="ratemyapp_accept_button_label">Rate Now</string>
-<string name="ratemyapp_later_button_label">Remind me later</string>
-<string name="ratemyapp_cancel_button_label">No, thank you</string>
+> <string name="ratemyapp_accept_button_label">Rate Now</string>
+> <string name="ratemyapp_later_button_label">Remind me later</string>
+> <string name="ratemyapp_cancel_button_label">No, thank you</string>
 
 You can change the number of launches or days until prompt in the RateMyApp.java, by updating the 
 variables LAUNCHES_UNTIL_PROMPT or DAYS_UNTIL_PROMPT, respectively. The DAYS_AND_LAUNCHES variable 
@@ -37,3 +37,6 @@ The RateMyAppDemoActivity.java (/src/com/RateMyAppDemo/activities) will show an 
 
 ##Example
 You can run the sample RateMyApp Demo to see how the dialog works.
+
+##Credits
+This utility is an extension of http://www.androidsnippets.com/prompt-engaged-users-to-rate-your-app-in-the-android-market-appirater
